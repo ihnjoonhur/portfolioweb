@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #ccd6f6;
+  --secondary-color: #8892b0;
+  --tertiary-color: #ccd6f6;
+  --accent-color: #64ffda;
+  --primary-bg-color: #0a192f;
+  --secondary-bg-color: #112240;
+  --Nav: #0a192f;
+  --project: #a8b2d1;
+  --project-desc: #112240;
+  --silver-grey: #233554;
+}
+
+@layer components {
+  body {
+    @apply bg-primaryBg text-primary font-fontSans scroll-smooth;
+  }
+  body.sliderOpen {
+    overflow: hidden;
+  }
+  .main-page {
+    @apply mx-auto px-6 sm:max-w-xl sm:px-0 md:max-w-screen-sm lg:px-16 lg:max-w-screen-lg;
+  }
+  main.main-page.blur {
+    filter: blur(5px) brightness(0.7);
+    pointer-events: none;
+    user-select: none;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  .main-header {
+    @apply flex justify-between h-24 bg-[#0a192fd9] w-full px-6 font-spacemono text-sm fixed top-0 z-20 transition-all duration-100 ease-slideSideBar
+    sm:px-12;
+  }
+  .main-header.shade {
+    @apply shadow-[0_10px_30px_-10px_#020c1bb3];
+  }
+  .menu-hamburger {
+    @apply cursor-pointer flex justify-center items-center md:hidden z-40;
+  }
+  .menu-hamburger.active .hamburger_line {
+    transform: translateX(-50px);
+    background: transparent;
+  }
+  .menu-hamburger.active .hamburger_line::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+  .menu-hamburger.active .hamburger_line::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+  .sidebar-menu {
+    @apply z-30 transition-all duration-300 delay-75 ease-slideSideBar fixed top-0 bottom-0 right-0 h-screen bg-secondaryBg translate-x-full w-[min(75vw,400px)] pt-20;
+  }
+  .sidebar-menu.active {
+    @apply translate-x-0;
+  }
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: var(--secondary-color);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+    border: 1px solid #597bad;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+  }
+
+  .base-icons {
+    @apply image-hover w-6 h-6 sm:w-7 sm:h-7
+  }
+
+  /* Project.tsx styles */
+  .project-container {
+    @apply grid grid-cols-12 mb-4 md:mb-40;
+  }
+  .project-title-right,
+  .project-title-left {
+    @apply text-accent text-center self-center text-base mb-4 
+    sm:text-lg 
+    md:text-base md:self-auto md:text-left md:mb-5 md:w-9/12
+    lg:mb-8 lg:text-xl lg:w-10/12;
+  }
+  .project-title-right {
+    @apply md:text-right;
+  }
+  .project-info-right,
+  .project-info-left {
+    @apply py-8 px-5 z-10 text-left flex flex-col justify-center items-start row-[1/2] col-[1_/_13]
+    sm:px-7
+    md:justify-center md:text-right md:py-0 md:px-0 md:items-end md:col-[5_/_13]
+    lg:col-[6_/_13];
+  }
+  .project-info-left {
+    @apply md:text-left md:items-start md:px-0 md:py-0 md:col-[1_/_9]
+    lg:col-[1_/_8];
+  }
+  .project-image-right,
+  .project-image-left {
+    @apply row-[1/2] col-[1_/_13] opacity-5 
+    sm:opacity-10 
+    md:opacity-10 md:col-[6_/_13]
+    lg:opacity-100 lg:col-[7_/_13];
+  }
+  .project-image-left {
+    @apply md:col-[1_/_8]
+    lg:col-[1_/_7];
+  }
+  .project-desc {
+    @apply text-sm text-project rounded mb-4 
+    md:bg-secondaryBg md:p-5
+    lg:mb-0 lg:p-4;
+  }
+  .project-tech {
+    @apply flex flex-wrap text-xs gap-x-1 text-accent
+    md:flex-nowrap md:justify-between md:text-sm;
+  }
+  .project-tech-name {
+    @apply flex-wrap font-spacemono mr-2 
+    md:min-w-max
+    lg:mx-1 lg:mt-8;
+  }
+  .project-links {
+    @apply mt-4;
+  }
+  .github-icon {
+    @apply image-hover w-6 h-7 lg:w-7 lg:h-7;
+  }
+}
+
+.section-header-line {
+  @apply after:content-[''] after:block after:relative after:bg-[#233554] after:h-[1px] after:ml-8 after:w-[40vw] lg:after:w-[300px];
+}
+
+.squishy-button {
+  @apply relative cursor-pointer text-primary py-[.5rem] px-[16px] border border-accent rounded 
+  bg-transparent text-sm transition-all duration-150 shadow-squish top-0 left-0 hover:shadow-squished hover:top-[3px] hover:left-[3px]
+  md:py-[.9rem] md:px-[20px];
+}
+
+.list-hover {
+  @apply transition-all duration-500 hover:text-accent;
+}
+
+.image-hover {
+  @apply transition-all duration-300 md:hover:text-accent md:hover:-translate-y-1;
+}
+
+.fun-underline {
+  @apply text-accent relative no-underline inline-block after:content-[""] after:w-0 after:block after:h-[1px] after:bottom-[.37rem] after:bg-accent after:transition-all 
+  after:duration-300 after:opacity-50 hover:after:w-full;
+}
+
+.portfolio-image {
+  @apply relative w-[45vw] sm:w-[39vw] after:top-3 after:left-3 md:w-fit md:h-fit after:transition-all after:duration-500 after:ease-in-out after:border-2 after:absolute after:content-[""] after:block after:w-full 
+  after:h-full md:after:top-7 md:after:left-7 after:border-accent after:-z-10 after:hover:top-4 after:hover:left-4;
+}
+
+.about-technologies {
+  @apply grid grid-cols-technologiesGrid gap-x-4 p-0 mt-3 overflow-hidden;
+}
+
+.hamburger_line {
+  @apply bg-accent w-8 h-[2px] my-[3px] mx-[2px] rounded-[10px] transition-all duration-300 ease-in-out
+  after:content-[""] after:absolute after:w-8 after:h-[2px] after:bg-accent after:rounded-[10px] after:transition-all after:duration-300 after:ease-in-out after:translate-y-[10px]
+  before:content-[""] before:absolute before:w-8 before:h-[2px] before:bg-accent before:rounded-[10px] before:transition-all before:duration-300 before:ease-in-out before:translate-y-[-10px];
+}
